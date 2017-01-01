@@ -16,7 +16,6 @@ def startFirst():
     DISPLAYSURF = pygame.display.set_mode((800, 480), pygame.NOFRAME)
     print(pygame.display.Info())
 
-    #currentscreen = first.FirstScreen()
     currentscreen = start.StartScreen()
 
     running = True

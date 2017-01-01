@@ -12,8 +12,8 @@ class StartScreen:
 
 
     def __init__(self):
-        self.background = pygame.image.load("../screens/start.png")
-        with open("../screens/start.json",'r') as fd:
+        self.background = pygame.image.load("screens/start.png")
+        with open("screens/start.json",'r') as fd:
             self.data = json.load(fd)
 
     def update(self, event):
