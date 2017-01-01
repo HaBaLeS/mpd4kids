@@ -1,24 +1,11 @@
 
-import pygame
-from pygame.locals import *
-import json
 from constants import *
 from polygon_tools import *
 
 
-
-
 class FirstScreen:
 
-
-    def __init__(self):
-        self.background = pygame.image.load("../screens/first.png")
-        with open("../screens/first.json",'r') as fd:
-            self.data = json.load(fd)
-
     def update(self, event):
-        #if event.type == MOUSEBUTTONUP  and event.button == 1:
-         #   print("click")
         if event.type == LMB_RELEASE:
             self.handleClickEvent(event.pos)
         pass
@@ -33,7 +20,6 @@ class FirstScreen:
                 if DEBUG:
                     aabb = getAABB(btn['clickarea'])
                     pygame.draw.rect(surface, RED, aabb, 2)
-
 
 
     def handleClickEvent(self,pos):

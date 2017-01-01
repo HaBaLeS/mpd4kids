@@ -81,8 +81,8 @@
                     36
                 ]
             ],
-            "function": "musik",
-            "name": "Musik"
+            "function": "exit_player",
+            "name": "Aus"
         },
         {
             "clickarea": [
@@ -127,8 +127,8 @@
                     342
                 ]
             ],
-            "function": "exit_player",
-            "name": "Aus"
+            "function": "music_selection",
+            "name": "Musik"
         }
     ],
     "screen_name": "start"
