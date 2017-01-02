@@ -29,7 +29,7 @@ for artist in client.list("Artist", "Genre", "Audiobook"):
 
         album_sum = 0;
         for track in client.find("album", album):
-            print("\t" +"\t" + str(track))
+            #print("\t" +"\t" + str(track))
             album_sum = album_sum + int(track['time'])
 
         #print("\t" + formatDuration(album_sum))

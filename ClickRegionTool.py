@@ -2,8 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from pygame import time
 import json
-
-BLACK = (0, 0, 0)
+from constants import *
 
 def draw_click_areas(DISPLAYSURF, area_point_list):
 
@@ -68,14 +67,9 @@ def startFirst(name):
                     area_point_lists.append(curr_list)
 
 
-
-
         DISPLAYSURF.blit(background, (0, 0))
-
         draw_click_areas(DISPLAYSURF, area_point_lists)
-
         DISPLAYSURF.blit(text_surface, text_bounds)
-
         pygame.display.update()
 
         # do your non-rendering game loop computation here

@@ -20,24 +20,10 @@ class BaseScreen:
 
     def draw(self, surface):
         surface.blit(self.background, (0, 0))
-        if DEBUG:
-            for btn in self.data['buttons']:
-                pygame.draw.polygon(surface, BLUE, btn['clickarea'], 2)
-
-                if DEBUG:
-                    aabb = getAABB(btn['clickarea'])
-                    pygame.draw.rect(surface, RED, aabb, 2)
 
 
-    def draw(self, surface):
-        surface.blit(self.background, (0, 0))
-        if DEBUG:
-            for btn in self.data['buttons']:
-                pygame.draw.polygon(surface, BLUE, btn['clickarea'], 2)
-
-                if DEBUG:
-                    aabb = getAABB(btn['clickarea'])
-                    pygame.draw.rect(surface, RED, aabb, 2)
+        self.drawScreen(surface)
+        self.drawDebug(surface)
 
 
     def handleClickEvent(self, pos):
@@ -49,3 +35,24 @@ class BaseScreen:
 
     def buttonClicked(self, button):
         raise Exception("Needs to to be implemented in subclass")
+
+    def drawScreen(self, surface):
+        #Override if needed
+        pass
+
+    def set_data(self, data):
+        #Override if you want to get data passed into your screen
+        pass
+
+    def update_model(self):
+        #Called before a screen ist shown
+        pass
+
+    def drawDebug(self,surface):
+        if DEBUG:
+            for btn in self.data['buttons']:
+                pygame.draw.polygon(surface, BLUE, btn['clickarea'], 2)
+
+                if DEBUG:
+                    aabb = getAABB(btn['clickarea'])
+                    pygame.draw.rect(surface, RED, aabb, 2)

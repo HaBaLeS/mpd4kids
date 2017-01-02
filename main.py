@@ -4,8 +4,10 @@ from pygame.locals import *
 from pygame import time
 from screens import start
 from screens import ab_select
+from screens import album_select
 
 from constants import *
+from mpd_utils import MpdPlayer
 
 
 
@@ -18,10 +20,12 @@ class Main():
         DISPLAYSURF = pygame.display.set_mode((800, 480), pygame.NOFRAME)
         print(pygame.display.Info())
 
+        self.mpd_player = MpdPlayer()
 
         self.screens = {
             "start": start.StartScreen(self),
-            "ab_select": ab_select.AbSelectScreen(self)
+            "ab_select": ab_select.AbSelectScreen(self),
+            "album_select" : album_select.AlbumSelectScreen(self)
         }
 
         self.currentscreen = self.screens['start']
@@ -53,8 +57,11 @@ class Main():
     def exit_player(self):
         self.running = False
 
-    def switch_to_screen(self, screen_name):
+    def switch_to_screen(self, screen_name, data = None):
         self.currentscreen = self.screens[screen_name]
+        print(data)
+        self.currentscreen.set_data(data)
+        self.currentscreen.update_model()
 
 
 
