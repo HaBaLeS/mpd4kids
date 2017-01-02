@@ -5,6 +5,7 @@ from pygame import time
 from screens import start
 from screens import ab_select
 from screens import album_select
+from screens import play_controll
 
 from constants import *
 from mpd_utils import MpdPlayer
@@ -25,7 +26,8 @@ class Main():
         self.screens = {
             "start": start.StartScreen(self),
             "ab_select": ab_select.AbSelectScreen(self),
-            "album_select" : album_select.AlbumSelectScreen(self)
+            "album_select" : album_select.AlbumSelectScreen(self),
+            "play_controll": play_controll.PlayControll(self)
         }
 
         self.currentscreen = self.screens['start']
@@ -59,9 +61,10 @@ class Main():
 
     def switch_to_screen(self, screen_name, data = None):
         self.currentscreen = self.screens[screen_name]
-        print(data)
-        self.currentscreen.set_data(data)
+        if data :
+            self.currentscreen.set_data(data)
         self.currentscreen.update_model()
+
 
 
 

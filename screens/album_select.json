@@ -85,8 +85,8 @@
                     213
                 ]
             ],
-            "function": "",
-            "name": ""
+            "function": "album_0",
+            "name": "album_0"
         },
         {
             "clickarea": [
@@ -107,8 +107,8 @@
                     220
                 ]
             ],
-            "function": "",
-            "name": ""
+            "function": "album_1",
+            "name": "album_1"
         },
         {
             "clickarea": [
@@ -129,8 +129,8 @@
                     431
                 ]
             ],
-            "function": "",
-            "name": ""
+            "function": "album_2",
+            "name": "album_2"
         },
         {
             "clickarea": [
@@ -151,9 +151,9 @@
                     435
                 ]
             ],
-            "function": "",
-            "name": ""
+            "function": "album_3",
+            "name": "album_3"
         }
     ],
-    "screen_name": "album_select"
+    "screen_name": "play_controll"
 }

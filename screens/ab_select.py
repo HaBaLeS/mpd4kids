@@ -1,5 +1,6 @@
 from constants import *
 from screens.BaseScreen import BaseScreen
+from render_utils import render_textrect
 
 
 class AbSelectScreen(BaseScreen):
@@ -88,9 +89,9 @@ class AbSelectScreen(BaseScreen):
             artist = page_artist[i]
             tw = os_font.size(artist)
             print(tw)
-            text_surface = os_font.render(artist, True, WHITE)
+
+            text_surface = render_textrect(artist, os_font,self.images[i],WHITE,None, 1)
             text_bounds = text_surface.get_rect()
-            text_bounds.center = (100, 150)
             self.images[i].blit(text_surface, text_bounds)
 
             self.images[i].convert()

@@ -1,5 +1,5 @@
 from mpd import MPDClient
-
+from mutagen import  File
 
 
 def formatDuration(secs):
@@ -21,6 +21,7 @@ client.connect("localhost", 6600)
 #print(client.playlistinfo())
 #client.save("test_playlist")
 
+mpd_library_path  = "/home/falko/Musik/"
 
 
 for artist in client.list("Artist", "Genre", "Audiobook"):
@@ -29,8 +30,17 @@ for artist in client.list("Artist", "Genre", "Audiobook"):
 
         album_sum = 0;
         for track in client.find("album", album):
-            #print("\t" +"\t" + str(track))
+            print("\t" +"\t" + str(track))
             album_sum = album_sum + int(track['time'])
+
+
+            file = File(mpd_library_path + track['file'])  # mutagen can automatically detect format and type of tags
+            if "APIC:" in file.tags.keys():
+                artwork = file.tags['APIC:'].data  # access APIC frame and grab the image
+                with open( '_image.jpg', 'wb') as img:
+                    print("found image in " + track['file'])
+                    img.write(artwork)  # write artwork to new image
+
 
         #print("\t" + formatDuration(album_sum))
         print("\t" + album + " " + formatDuration(album_sum))

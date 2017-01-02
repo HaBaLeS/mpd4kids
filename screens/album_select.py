@@ -1,6 +1,7 @@
 from constants import *
 from screens.BaseScreen import BaseScreen
-
+from render_utils import render_textrect
+from mutagen import File
 
 class AlbumSelectScreen(BaseScreen):
 
@@ -18,6 +19,8 @@ class AlbumSelectScreen(BaseScreen):
     def buttonClicked(self, button):
         btn_funct = button['function']
 
+        selected_album = None
+
         if "next" == btn_funct:
             if self.model['offset']+4 <= len(self.model['albums']):
                 self.model['offset'] =  self.model['offset']+4
@@ -31,23 +34,21 @@ class AlbumSelectScreen(BaseScreen):
         elif "back" == btn_funct:
             self.main_callback.switch_to_screen("ab_select")
 
-        elif "select_0" == btn_funct:
-            if len(self.model['page_artist']) >0:
-                artist = self.model['page_artist'][0]
-                print(artist)
-        elif "select_1" == btn_funct:
-            if len(self.model['page_artist']) > 1:
-                artist = self.model['page_artist'][1]
-                print(artist)
-        elif "select_2" == btn_funct:
-            if len(self.model['page_artist']) > 2:
-                artist = self.model['page_artist'][2]
-                print(artist)
-        elif "select_3" == btn_funct:
-            if len(self.model['page_artist']) > 3:
-                artist = self.model['page_artist'][3]
-                print(artist)
+        elif "album_0" == btn_funct:
+            if len(self.model['page_album']) >0:
+                selected_album = self.model['page_album'][0]
+        elif "album_1" == btn_funct:
+            if len(self.model['page_album']) > 1:
+                selected_album = self.model['page_album'][1]
+        elif "album_2" == btn_funct:
+            if len(self.model['page_album']) > 2:
+                selected_album = self.model['page_album'][2]
+        elif "album_3" == btn_funct:
+            if len(self.model['page_album']) > 3:
+                selected_album = self.model['page_album'][3]
 
+        if selected_album:
+            self.main_callback.switch_to_screen("play_controll", selected_album)
         print(btn_funct)
 
 
@@ -81,21 +82,31 @@ class AlbumSelectScreen(BaseScreen):
 
         self.images = []
         for i in range(0,len(page_album)):
+            album = page_album[i]
             self.images.append(pygame.Surface((200,200)))
             self.images[i].fill(BLUE)
 
-            album = page_album[i]
-            tw = os_font.size(album)
-            print(tw)
-            text_surface = os_font.render(album, True, WHITE)
-            text_bounds = text_surface.get_rect()
-            text_bounds.center = (100, 150)
-            self.images[i].blit(text_surface, text_bounds)
+            track = self.main_callback.mpd_player.get_first_track_of_album(album)
+            file = File(CONFIG_mpd_library_path + track['file'])  # mutagen can automatically detect format and type of tags
+
+            if "APIC:" in file.tags.keys():
+                artwork = file.tags['APIC:'].data  # access APIC frame and grab the image
+                with open('tmp_album_cover.jpg', 'wb') as img:
+                    img.write(artwork)  # write artwork to new image
+                album_cover = pygame.image.load("tmp_album_cover.jpg")
+                foo = pygame.transform.scale(album_cover, (200, 200))
+                self.images[i].blit(foo, (0, 0))
+
+            else:
+                text_surface = render_textrect(album, os_font, self.images[i], WHITE, None, 1)
+                text_bounds = text_surface.get_rect()
+                self.images[i].blit(text_surface, text_bounds)
 
             self.images[i].convert()
 
 
     def set_data(self, artist):
         self.model['selected_artist'] = artist
+        self.model['offset'] = 0
 
 

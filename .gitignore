@@ -103,3 +103,7 @@ ENV/
 .ropeproject
 
 .idea
+
+_image.jpg
+tmp_album_cover.jpg
+share/

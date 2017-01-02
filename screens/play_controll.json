@@ -1,0 +1,137 @@
+{
+    "buttons": [
+        {
+            "clickarea": [
+                [
+                    498,
+                    30
+                ],
+                [
+                    569,
+                    37
+                ],
+                [
+                    561,
+                    96
+                ],
+                [
+                    498,
+                    87
+                ]
+            ],
+            "function": "vol_down",
+            "name": "vol_down"
+        },
+        {
+            "clickarea": [
+                [
+                    703,
+                    25
+                ],
+                [
+                    787,
+                    33
+                ],
+                [
+                    777,
+                    106
+                ],
+                [
+                    701,
+                    96
+                ]
+            ],
+            "function": "vol_up",
+            "name": "vol_up"
+        },
+        {
+            "clickarea": [
+                [
+                    17,
+                    354
+                ],
+                [
+                    163,
+                    359
+                ],
+                [
+                    148,
+                    471
+                ],
+                [
+                    30,
+                    468
+                ]
+            ],
+            "function": "back",
+            "name": "back"
+        },
+        {
+            "clickarea": [
+                [
+                    378,
+                    361
+                ],
+                [
+                    564,
+                    362
+                ],
+                [
+                    560,
+                    457
+                ],
+                [
+                    369,
+                    458
+                ]
+            ],
+            "function": "play_pause",
+            "name": "play_pause"
+        },
+        {
+            "clickarea": [
+                [
+                    595,
+                    353
+                ],
+                [
+                    686,
+                    353
+                ],
+                [
+                    679,
+                    455
+                ],
+                [
+                    589,
+                    454
+                ]
+            ],
+            "function": "next",
+            "name": "next_song"
+        },
+        {
+            "clickarea": [
+                [
+                    258,
+                    357
+                ],
+                [
+                    337,
+                    356
+                ],
+                [
+                    325,
+                    460
+                ],
+                [
+                    258,
+                    445
+                ]
+            ],
+            "function": "prev_song",
+            "name": "prev_song"
+        }
+    ],
+    "screen_name": "play_controll"
+}
