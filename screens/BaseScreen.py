@@ -8,8 +8,8 @@ class BaseScreen:
 
     def __init__(self, main_callback, name):
         self.main_callback = main_callback
-        self.background = pygame.image.load("screens/" + name + ".png")
-        with open("screens/" + name +  ".json", 'r') as fd:
+        self.background = pygame.image.load("res/" + name + ".png")
+        with open("res/" + name +  ".json", 'r') as fd:
             self.data = json.load(fd)
 
 
