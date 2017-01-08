@@ -79,5 +79,5 @@ def startFirst(name):
     dumpAreas(area_point_lists,name)
 
 if __name__ == "__main__":
-    startFirst("play_controll")
+    startFirst("ab_select")
 

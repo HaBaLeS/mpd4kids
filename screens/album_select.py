@@ -1,7 +1,7 @@
 from constants import *
 from screens.BaseScreen import BaseScreen
 from render_utils import render_textrect
-from mutagen import File
+
 
 class AlbumSelectScreen(BaseScreen):
 
@@ -64,7 +64,7 @@ class AlbumSelectScreen(BaseScreen):
 
     def update_model(self):
 
-        self.model['albums'] = self.main_callback.mpd_player.get_album_for_artist(self.model['selected_artist'])
+        self.model['albums'] = self.main_callback.audio_controll.get_album_for_artist(self.model['selected_artist'])
 
         start_idx = self.model['offset']
         end_idx = start_idx +4;
@@ -86,17 +86,9 @@ class AlbumSelectScreen(BaseScreen):
             self.images.append(pygame.Surface((200,200)))
             self.images[i].fill(BLUE)
 
-            track = self.main_callback.mpd_player.get_first_track_of_album(album)
-            file = File(CONFIG_mpd_library_path + track['file'])  # mutagen can automatically detect format and type of tags
-
-            if "APIC:" in file.tags.keys():
-                artwork = file.tags['APIC:'].data  # access APIC frame and grab the image
-                with open('tmp_album_cover.jpg', 'wb') as img:
-                    img.write(artwork)  # write artwork to new image
-                album_cover = pygame.image.load("tmp_album_cover.jpg")
-                foo = pygame.transform.scale(album_cover, (200, 200))
-                self.images[i].blit(foo, (0, 0))
-
+            album_cover = self.main_callback.audio_controll.get_album_coverart(album)
+            if album_cover:
+                self.images[i].blit(album_cover, (0, 0))
             else:
                 text_surface = render_textrect(album, os_font, self.images[i], WHITE, None, 1)
                 text_bounds = text_surface.get_rect()

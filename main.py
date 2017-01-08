@@ -1,14 +1,16 @@
 from pygame.event import Event
 
-from pygame.locals import *
+from audio_subsystem import AudioControll
+from audio_subsystem import AudioCollection
+from audio_subsystem.mpd_utils import MPDAudioSubsystem
+
+from constants import *
 from pygame import time
-from screens import start
+from pygame.locals import *
 from screens import ab_select
 from screens import album_select
 from screens import play_controll
-
-from constants import *
-from mpd_utils import MpdPlayer
+from screens import start
 
 
 
@@ -17,11 +19,11 @@ class Main():
     def __init__(self):
 
         pygame.init()
+        self.init_audio_subsystem()
 
         DISPLAYSURF = pygame.display.set_mode((800, 480), pygame.NOFRAME)
         print(pygame.display.Info())
 
-        self.mpd_player = MpdPlayer()
 
         self.screens = {
             "start": start.StartScreen(self),
@@ -65,7 +67,13 @@ class Main():
             self.currentscreen.set_data(data)
         self.currentscreen.update_model()
 
+    def init_audio_subsystem(self):
 
+        #Initialize which implementation of the Library Management and Player Controll should be loaded.
+        # This can ba anything from flat file, mpd, dnla or whatever you want to build.
+        # Even spotyfy and Google/Amazon Music should be possible as long as connectors exist
+        self.audio_controll = MPDAudioSubsystem()
+        self.audio_collection = self.audio_controll
 
 
 if __name__ == "__main__":

@@ -9,7 +9,7 @@ class AbSelectScreen(BaseScreen):
     def __init__(self,main_callback):
         super().__init__(main_callback, "ab_select")
         self.model = {}
-        self.model['artist'] = main_callback.mpd_player.getAudioBookArtists()
+        self.model['artist'] = main_callback.audio_collection.get_artist_for_genre("Audiobook")
         self.model['offset'] = 0
 
         self.update_model()
