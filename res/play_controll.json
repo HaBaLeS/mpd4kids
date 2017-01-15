@@ -108,7 +108,7 @@
                 ]
             ],
             "function": "next",
-            "name": "next_song"
+            "name": "next"
         },
         {
             "clickarea": [
@@ -129,8 +129,8 @@
                     445
                 ]
             ],
-            "function": "prev_song",
-            "name": "prev_song"
+            "function": "prev",
+            "name": "prev"
         }
     ],
     "screen_name": "play_controll"

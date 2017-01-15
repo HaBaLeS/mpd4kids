@@ -12,9 +12,33 @@ class AudioCollection:
     """
         Returns a pygame image or None
     """
-    def get_album_coverart(self, album):
+    def get_album_coverart(self, album, size):
         pass
 
 
+
 class AudioControll:
-    pass
+
+    def start(self):
+        raise Exception("Not implemented")
+
+    def stop(self):
+        raise Exception("Not implemented")
+
+    def clear_list_and_load_album(self, album):
+        raise Exception("Not implemented")
+
+    def play_pause(self):
+        raise Exception("Not implemented")
+
+    def next(self):
+        raise Exception("Not implemented")
+
+    def prev(self):
+        raise Exception("Not implemented")
+
+    def playback_status(self):
+        raise Exception("Not implemented")
+
+    def currentsong(self):
+        raise Exception("Not implemented")

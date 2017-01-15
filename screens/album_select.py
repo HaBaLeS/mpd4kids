@@ -72,7 +72,6 @@ class AlbumSelectScreen(BaseScreen):
         if end_idx > len(self.model['albums']):
             end_idx = end_idx -( end_idx - len(self.model['albums']))
 
-        print(str(start_idx) + " : " + str(end_idx))
         page_album = self.model['albums'][start_idx:end_idx]
 
         self.model["page_album"] = page_album

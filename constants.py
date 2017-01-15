@@ -6,6 +6,8 @@ RED = (200,0,0)
 BLUE = (0,0,200)
 DEBUG = False
 
-CONFIG_mpd_library_path  = "/home/falko/Musik/mpd/music/"
+cover_size = (300,300)
+
+CONFIG_mpd_library_path  = "/home/falko/Musik/"
 
 LMB_RELEASE = pygame.USEREVENT + 1
