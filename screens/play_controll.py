@@ -10,8 +10,7 @@ class PlayControll(BaseScreen):
     def __init__(self, main_callback):
         super().__init__(main_callback, "play_controll")
         self.model = {
-            "selected_album": None,
-
+            "selected_album": main_callback.audio_controll.currentsong()['album'],
         }
 
         self.cover = pygame.Surface(cover_size)
@@ -54,11 +53,8 @@ class PlayControll(BaseScreen):
         self.model['offset'] = 0
 
     def update_model(self):
-
-        
         self.cover = pygame.Surface(cover_size)
         album =  self.model['selected_album']
-
 
         album_cover = self.main_callback.audio_controll.get_album_coverart(album,cover_size)
         if album_cover:
@@ -81,7 +77,5 @@ class PlayControll(BaseScreen):
 
     def drawScreen(self, surface):
         surface.blit(self.cover, (20,20))
-
-
         surface.blit(self.title_surface, (450,250))
 

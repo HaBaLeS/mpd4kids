@@ -25,7 +25,7 @@ def dumpAreas(area_point_lists, name):
             data['buttons'].append(ad)
 
     jd = json.dumps(data, sort_keys=True,indent = 4, separators = (',', ': '))
-    with open("screens/"+ data['screen_name'] + ".json", 'w') as fd:
+    with open("res/"+ data['screen_name'] + ".json", 'w') as fd:
         fd.write(jd)
 
     print(jd)
@@ -39,7 +39,7 @@ def startFirst(name):
     DISPLAYSURF = pygame.display.set_mode((800, 480), pygame.NOFRAME)
     print(pygame.display.Info())
 
-    background = pygame.image.load("screens/"+name+".png")
+    background = pygame.image.load("res/"+name+".png")
     os_font = pygame.font.Font("font/OpenSans-Regular.ttf",12)
 
     text_surface = os_font.render("Blafasel",True, BLACK)
@@ -79,5 +79,5 @@ def startFirst(name):
     dumpAreas(area_point_lists,name)
 
 if __name__ == "__main__":
-    startFirst("ab_select")
+    startFirst("start")
 

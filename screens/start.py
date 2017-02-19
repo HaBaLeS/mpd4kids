@@ -19,4 +19,11 @@ class StartScreen(BaseScreen):
         elif "hoerbuch" == btn_funct:
             self.main_callback.switch_to_screen("ab_select")
 
+        elif "current_playlist" == btn_funct:
+            if(self.current):
+                self.main_callback.switch_to_screen("play_controll",self.current['album'])
 
+    def update_model(self):
+        print("Stat Streen needs update")
+        self.current = self.main_callback.audio_controll.currentsong()
+        pass

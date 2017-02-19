@@ -20,6 +20,14 @@ class MPDAudioSubsystem(AudioCollection, AudioControll):
             self.client.connect("localhost", 6600)
         except ConnectionError:
             pass
+        except ConnectionRefusedError:
+            import sys
+            print("mpd not Running? Could not connect to client: ConnectionRefusedError")
+            sys.exit(1)
+        except ConnectionResetError:
+            import sys
+            print("mpd not Running? Could not connect to client: ConnectionRefusedError")
+            sys.exit(1)
 
     def get_artist_for_genre(self, genre):
         self.connect()
@@ -85,6 +93,6 @@ class MPDAudioSubsystem(AudioCollection, AudioControll):
         return self.client.currentsong()
 
     def playback_status(self):
-        print(self.client.status())
+        self.connect()
         return self.client.status()
 

@@ -21,8 +21,8 @@ client.connect("localhost", 6600)
 #print(client.playlistinfo())
 #client.save("test_playlist")
 
-print(client.playlist())
-print(client.status())
+#print(client.playlist())
+print(client.currentsong()['album'])
 
 
 def test2():

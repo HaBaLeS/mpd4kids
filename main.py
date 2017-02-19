@@ -33,6 +33,7 @@ class Main():
         }
 
         self.currentscreen = self.screens['start']
+        self.currentscreen.update_model()
 
         self.running = True
         clicked = False
