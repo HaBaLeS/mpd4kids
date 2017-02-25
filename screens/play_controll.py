@@ -10,8 +10,10 @@ class PlayControll(BaseScreen):
     def __init__(self, main_callback):
         super().__init__(main_callback, "play_controll")
         self.model = {
-            "selected_album": main_callback.audio_controll.currentsong()['album'],
+            "selected_album": None,
         }
+        if main_callback.audio_controll.currentsong():
+            self.model['selected_album'] = main_callback.audio_controll.currentsong()['album']
 
         self.cover = pygame.Surface(cover_size)
         self.os_font = pygame.font.Font("font/OpenSans-Regular.ttf", 18)
@@ -21,9 +23,6 @@ class PlayControll(BaseScreen):
     def buttonClicked(self, button):
         btn_funct = button['function']
 
-        print(btn_funct)
-        status = self.main_callback.audio_controll.playback_status()
-
         if "back" == btn_funct:
             self.main_callback.switch_to_screen("album_select")
 
@@ -31,13 +30,13 @@ class PlayControll(BaseScreen):
             self.main_callback.audio_controll.play_pause()
 
         if "next" == btn_funct:
+            status = self.main_callback.audio_controll.playback_status()
             if "nextsong" in status:
                 self.main_callback.audio_controll.next()
 
         if "prev" == btn_funct:
             self.main_callback.audio_controll.prev()
 
-        print(self.main_callback.audio_controll.currentsong())
         self.update_model()
 
     def set_data(self, album):

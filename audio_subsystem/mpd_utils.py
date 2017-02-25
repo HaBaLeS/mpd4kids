@@ -7,18 +7,21 @@ from constants import *
 import pygame
 
 """
-TODO Learn how to decorate connect and sisconnect to every call!
+TODO Learn how to decorate connect and disconnect to every call!
 """
 
 class MPDAudioSubsystem(AudioCollection, AudioControll):
 
     def __init__(self):
         self.client = MPDClient()
+        self.client.timeout = 10
 
     def connect(self):
         try:
             self.client.connect("localhost", 6600)
+            print("Reconnect success")
         except ConnectionError:
+            print("already connected")
             pass
         except ConnectionRefusedError:
             import sys
