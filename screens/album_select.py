@@ -49,7 +49,6 @@ class AlbumSelectScreen(BaseScreen):
 
         if selected_album:
             self.main_callback.switch_to_screen("play_controll", selected_album)
-        print(btn_funct)
 
 
     def drawScreen(self, surface):
@@ -63,6 +62,9 @@ class AlbumSelectScreen(BaseScreen):
             surface.blit(self.images[3], (450, 270))
 
     def update_model(self):
+
+        if self.model['selected_artist'] == '':
+            self.model['selected_artist'] = self.main_callback.audio_controll.currentsong()['artist']
 
         self.model['albums'] = self.main_callback.audio_controll.get_album_for_artist(self.model['selected_artist'])
 
