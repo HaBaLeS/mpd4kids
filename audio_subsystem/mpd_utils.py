@@ -35,17 +35,24 @@ class MPDAudioSubsystem(AudioCollection, AudioControll):
     def get_artist_for_genre(self, genre):
         self.connect()
         if(genre):
-            return self.client.list("Artist", "Genre", "Audiobook")
-        return self.client.list("Artist")
+            val= self.client.list("Artist", "Genre", "Audiobook")
+        else:
+            val = self.client.list("Artist")
+        self.client.disconnect()
+        return val
 
     def get_album_for_artist(self, artist):
         self.connect()
-        return self.client.list("Album", "Artist", artist)
+        val = self.client.list("Album", "Artist", artist)
+        self.client.disconnect()
+        return val
 
 
     def get_first_track_of_album(self, album):
         self.connect()
-        return self.client.find("album", album)[0]
+        val =  self.client.find("album", album)[0]
+        self.client.disconnect()
+        return val
 
     def get_album_coverart(self, album, size = (200,200)):
         self.connect()
@@ -58,17 +65,21 @@ class MPDAudioSubsystem(AudioCollection, AudioControll):
                 img.write(artwork)  # write artwork to new image
             album_cover = pygame.image.load("tmp_album_cover.jpg")
             foo = pygame.transform.scale(album_cover, size)
+            self.client.disconnect()
             return foo
 
+        self.client.disconnect()
         return None
 
     def start(self):
         self.connect()
         self.client.play()
+        self.client.disconnect()
 
     def stop(self):
         self.connect()
         self.client.stop()
+        self.client.disconnect()
 
     def play_pause(self):
         self.connect()
@@ -78,24 +89,33 @@ class MPDAudioSubsystem(AudioCollection, AudioControll):
         else:
             self.client.pause(0)
 
+        self.client.disconnect()
+
     def next(self):
         self.connect()
         self.client.next()
+        self.client.disconnect()
 
     def prev(self):
         self.connect()
         self.client.previous()
+        self.client.disconnect()
 
     def clear_list_and_load_album(self, album):
         self.connect()
         self.client.clear()
         self.client.findadd("Album", album )
+        self.client.disconnect()
 
     def currentsong(self):
         self.connect()
-        return self.client.currentsong()
+        val = self.client.currentsong()
+        self.client.disconnect()
+        return val
 
     def playback_status(self):
         self.connect()
-        return self.client.status()
+        val = self.client.status()
+        self.client.disconnect()
+        return val
 

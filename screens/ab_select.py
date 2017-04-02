@@ -1,3 +1,5 @@
+import json
+
 from constants import *
 from screens.BaseScreen import BaseScreen
 from render_utils import render_textrect
@@ -11,6 +13,11 @@ class AbSelectScreen(BaseScreen):
         self.model = {}
         self.model['artist'] = main_callback.audio_collection.get_artist_for_genre("Audiobook")
         self.model['offset'] = 0
+
+        with open("res/artist_covers/artist_cover.json", 'r') as fd:
+            self.data['artist_covers'] = json.load(fd)
+
+        print( self.data['artist_covers'])
 
         self.update_model()
 
@@ -73,9 +80,7 @@ class AbSelectScreen(BaseScreen):
         if end_idx > len(self.model['artist']):
             end_idx = end_idx -( end_idx - len(self.model['artist']))
 
-        print(str(start_idx) + " : " + str(end_idx))
         page_artist = self.model['artist'][start_idx:end_idx]
-
         self.model["page_artist"] = page_artist
 
         os_font = pygame.font.Font("font/OpenSans-Regular.ttf", 18)
@@ -83,17 +88,22 @@ class AbSelectScreen(BaseScreen):
 
         self.images = []
         for i in range(0,len(page_artist)):
-            self.images.append(pygame.Surface((200,200)))
-            self.images[i].fill(BLUE)
-
             artist = page_artist[i]
-            tw = os_font.size(artist)
-            print(tw)
+            if artist in [ e['artist'] for e in self.data['artist_covers']]:
+                #found artist_cover
+                for ac in self.data['artist_covers']:
+                    if ac['artist'] == artist:
+                        album_cover = pygame.image.load("res/artist_covers/" + ac['cover_image'])
+                        foo = pygame.transform.scale(album_cover, (200, 200))
+                        self.images.append(foo)
+            else:
+                print("No artist cover for: "+ artist)
+                self.images.append(pygame.Surface((200,200)))
+                self.images[i].fill(BLUE)
 
-            text_surface = render_textrect(artist, os_font,self.images[i],WHITE,None, 1)
-            text_bounds = text_surface.get_rect()
-            self.images[i].blit(text_surface, text_bounds)
-
-            self.images[i].convert()
+                text_surface = render_textrect(artist, os_font,self.images[i],WHITE,None, 1)
+                text_bounds = text_surface.get_rect()
+                self.images[i].blit(text_surface, text_bounds)
+                self.images[i].convert()
 
 
