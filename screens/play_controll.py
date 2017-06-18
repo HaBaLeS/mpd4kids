@@ -68,9 +68,9 @@ class PlayControll(BaseScreen):
         current = self.main_callback.audio_controll.currentsong()
         status = self.main_callback.audio_controll.playback_status()
 
-        track_count = str(int(current['pos']) + 1) + "/" + str(status['playlistlength'])
-
-        self.title_surface = self.os_font.render(track_count + " " + current['title'], True, WHITE)
+        if current and status:
+            track_count = str(int(current['pos']) + 1) + "/" + str(status['playlistlength'])
+            self.title_surface = self.os_font.render(track_count + " " + current['title'], True, WHITE)
 
 
 
