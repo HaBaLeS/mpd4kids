@@ -3,20 +3,20 @@
         {
             "clickarea": [
                 [
-                    46,
-                    37
+                    50,
+                    35
                 ],
                 [
-                    219,
+                    379,
                     45
                 ],
                 [
-                    208,
-                    120
+                    374,
+                    175
                 ],
                 [
-                    58,
-                    111
+                    53,
+                    167
                 ]
             ],
             "function": "current_playlist",
@@ -25,46 +25,46 @@
         {
             "clickarea": [
                 [
-                    82,
-                    177
+                    54,
+                    288
                 ],
                 [
-                    216,
-                    175
+                    409,
+                    296
                 ],
                 [
-                    211,
-                    249
+                    391,
+                    439
                 ],
                 [
-                    77,
-                    236
-                ]
-            ],
-            "function": "exit_player",
-            "name": "exit_player"
-        },
-        {
-            "clickarea": [
-                [
-                    90,
-                    330
-                ],
-                [
-                    251,
-                    329
-                ],
-                [
-                    249,
-                    406
-                ],
-                [
-                    89,
-                    399
+                    47,
+                    424
                 ]
             ],
             "function": "hoerbuch",
             "name": "hoerbuch"
+        },
+        {
+            "clickarea": [
+                [
+                    592,
+                    31
+                ],
+                [
+                    761,
+                    34
+                ],
+                [
+                    759,
+                    115
+                ],
+                [
+                    599,
+                    111
+                ]
+            ],
+            "function": "exit_player",
+            "name": "exit_player"
         }
     ],
     "screen_name": "start"

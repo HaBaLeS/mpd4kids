@@ -4,6 +4,17 @@
   },
    {
     "artist":"Die Drei ??? Kids", "cover_image":"ddf_kids.png"
+  },
+   {
+    "artist":"Lego Ninjago", "cover_image":"ninjago.png"
+  },
+   {
+    "artist":"Ritter Rost", "cover_image":"ritter_rost.jpg"
+  },
+  {
+    "artist":"Cornelia Funke", "cover_image":"cornelia_funke.jpg"
   }
+
+
 
 ]

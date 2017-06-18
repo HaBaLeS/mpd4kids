@@ -64,7 +64,11 @@ class AlbumSelectScreen(BaseScreen):
     def update_model(self):
 
         if self.model['selected_artist'] == '':
-            self.model['selected_artist'] = self.main_callback.audio_controll.currentsong()['artist']
+            at = self.main_callback.audio_controll.currentsong()
+            if at:
+                self.model['selected_artist'] = at['artist']
+            else:
+                self.model['selected_artist'] = None
 
         self.model['albums'] = self.main_callback.audio_controll.get_album_for_artist(self.model['selected_artist'])
 
